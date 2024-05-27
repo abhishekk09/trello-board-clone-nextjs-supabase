@@ -29,6 +29,9 @@ const ModalCardDescription = ({ cardId }) => {
     const res = await updateDescription(description, cardId);
     if (!res.error) {
       onClose();
+      setTimeout(() => {
+        window.location.reload();
+      }, 100);
     }
   };
 
