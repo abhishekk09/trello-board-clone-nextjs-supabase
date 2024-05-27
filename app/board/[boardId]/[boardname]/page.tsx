@@ -9,8 +9,6 @@ import CreateTaskList from "../../../components/CreateTaskList";
 import TaskHeader from "../../../components/TaskHeader";
 import { useRouter } from "next/navigation";
 
-// import { redirect } from "next/navigation";
-
 export default function BoardDetails({ params }) {
   const [state, setState] = useState([]);
   const [refreshList, setRefreshList] = useState(false);

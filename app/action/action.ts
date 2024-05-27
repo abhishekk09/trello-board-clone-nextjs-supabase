@@ -17,7 +17,6 @@ export const getCardList = async (id, boardname) => {
     .eq("board_id", id);
 
   return { boardStates, error };
-  //   revalidatePath(`/board/${boardId}/${boardname}`);
 };
 export const addColumn = async (formData) => {
   const title = formData.get("title");
@@ -27,8 +26,6 @@ export const addColumn = async (formData) => {
     .from("board_states")
     .insert([{ title: title, board_id: boardId }])
     .select("*");
-  console.log(data, error, "herer123123");
-  // revalidatePath(`/board/${boardId}/${boardname}`);
   return { data, error };
 };
 
@@ -43,7 +40,6 @@ export const createNewBoard = async (title) => {
   } else {
     revalidatePath("/");
     return boards;
-    // redirect(`/board/${boards.id}`);
   }
 };
 
@@ -72,7 +68,6 @@ export const updateCard = async (formData) => {
     .select();
 
   return { data, error };
-  // revalidatePath(`/board/${boardId}/${boardname}`, "page");
 };
 
 export const updateDescription = async (description, selectedId) => {
@@ -83,9 +78,6 @@ export const updateDescription = async (description, selectedId) => {
     .select();
 
   return { data, error };
-  // revalidatePath(`/board/${boardId}/${boardname}`, "page");
-  //   redirect(`/board/${boardId}/${boardname}`);
-  //   console.log(data, "addColumnDATA123 data");
 };
 export const updateTaskItem = async ({ id, bsId, params }) => {
   const { data, error } = await supabase
