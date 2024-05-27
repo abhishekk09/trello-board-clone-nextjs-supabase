@@ -2,7 +2,7 @@
 
 import { supabase } from "../lib/supabaseClient";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+// import { redirect } from "next/navigation";
 
 export const getBoardList = async () => {
   let { data: boards, error } = await supabase.from("boards").select("*");
@@ -15,7 +15,7 @@ export const getCardList = async (id, boardname) => {
     .from("board_states")
     .select("*")
     .eq("board_id", id);
-  // revalidatePath(`/board/${id}/${boardname}`);
+
   return { boardStates, error };
   //   revalidatePath(`/board/${boardId}/${boardname}`);
 };
@@ -38,7 +38,6 @@ export const createNewBoard = async (title) => {
     .insert([{ title: title }])
     .select();
 
-  //   revalidatePath("/");
   if (error) {
     console.log(error);
   } else {
@@ -56,7 +55,6 @@ export const addCard = async (formData, params) => {
     .insert([{ title: title, board_state_id: boardId }])
     .select("*");
 
-  // console.log(data, error, "herer123123");
   revalidatePath(`/board/${params.boardId}/${params.boardname}`);
   return { data, error };
 };
@@ -75,8 +73,6 @@ export const updateCard = async (formData) => {
 
   return { data, error };
   // revalidatePath(`/board/${boardId}/${boardname}`, "page");
-  //   redirect(`/board/${boardId}/${boardname}`);
-  //   console.log(data, "addColumnDATA123 data");
 };
 
 export const updateDescription = async (description, selectedId) => {
@@ -85,7 +81,7 @@ export const updateDescription = async (description, selectedId) => {
     .update({ description: description })
     .eq("id", selectedId)
     .select();
-  console.log(data, error, "update Description");
+
   return { data, error };
   // revalidatePath(`/board/${boardId}/${boardname}`, "page");
   //   redirect(`/board/${boardId}/${boardname}`);
@@ -97,9 +93,5 @@ export const updateTaskItem = async ({ id, bsId, params }) => {
     .update({ board_state_id: bsId })
     .eq("id", id)
     .select();
-  console.log(data, error, "addColumnDATA123 data");
   return { data, error };
-  // redirect(`/board/${params.boardId}/${params.boardname}`);
-  //   redirect(`/board/${boardId}/${boardname}`);
-  //   console.log(data, "addColumnDATA123 data");
 };

@@ -53,36 +53,6 @@ export default function BoardDetails({ params }) {
     fetchData();
   }, []);
 
-  // const getItemStyle = (isDragging, draggableStyle) => ({
-  //   // some basic styles to make the items look a bit nicer
-  //   userSelect: "none",
-  //   padding: grid * 2,
-  //   margin: `0 0 ${grid}px 0`,
-
-  //   // change background colour if dragging
-  //   background: isDragging ? "lightgreen" : "grey",
-
-  //   // styles we need to apply on draggables
-  //   ...draggableStyle,
-  // });
-
-  /**
-   * Moves an item from one list to another list.
-   */
-  // const move = (source, destination, droppableSource, droppableDestination) => {
-  //   const sourceClone = Array.from(source);
-  //   const destClone = Array.from(destination);
-  //   const [removed] = sourceClone.splice(droppableSource.index, 1);
-
-  //   destClone.splice(droppableDestination.index, 0, removed);
-
-  //   const result = {};
-  //   result[droppableSource.droppableId] = sourceClone;
-  //   result[droppableDestination.droppableId] = destClone;
-
-  //   return result;
-  // };
-
   // function moveElement(array, fromIndex, toIndex) {
   //   // if (fromIndex < 0 || fromIndex >= array.length || toIndex < 0 || toIndex >= array.length) {
   //   //   throw new Error("Invalid indices");
@@ -112,7 +82,6 @@ export default function BoardDetails({ params }) {
       // alert("reorder");
     } else {
       // alert("move element");
-
       updateTaskList(result.draggableId, destination.droppableId);
     }
   }
