@@ -2,11 +2,21 @@ import React, { useState } from "react";
 
 const Modal = ({ isOpen, onClose, onAdd }) => {
   const [boardTitle, setBoardTitle] = useState("");
-
+  const [showError, setShowError] = useState(false);
+  const onCreate = () => {
+    if (boardTitle) {
+      onAdd(boardTitle);
+      setBoardTitle("");
+      setShowError(false);
+      onClose();
+    } else {
+      setShowError(true);
+    }
+  };
   if (!isOpen) return null;
   return (
-    <div className="flex items-center justify-center z-50 absolute left-[400px]">
-      <div className="bg-white p-6 rounded shadow-lg w-80">
+    <div className="flex items-center justify-center z-50 absolute left-[407px] top-[125px]">
+      <div className="bg-gray-100 p-6 rounded shadow-lg w-80">
         <h2 className="text-xl font-bold mb-4">Create Board</h2>
         <input
           type="text"
@@ -15,14 +25,15 @@ const Modal = ({ isOpen, onClose, onAdd }) => {
           className="w-full p-2 border border-gray-300 rounded mb-4 text-sm"
           placeholder="Board Title"
         />
+        {showError && (
+          <div className="text-red-500 text-sm pb-4">
+            {"Please fill the title"}
+          </div>
+        )}
         <div className="flex justify-end">
           <button
-            onClick={() => {
-              onAdd(boardTitle);
-              setBoardTitle("");
-              onClose();
-            }}
-            className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
+            onClick={onCreate}
+            className="bg-green-500 text-white px-4 py-2 rounded mr-2"
           >
             Create
           </button>

@@ -47,7 +47,6 @@ export default function BoardDetails({ params }) {
 
   const onCallBack = () => {
     setRefreshList(false);
-    console.log("here we are on main");
   };
 
   useEffect(() => {

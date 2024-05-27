@@ -7,25 +7,12 @@ import { updateDescription } from "../action/action";
 const ModalCardDescription = ({ cardId }) => {
   const [description, setDescription] = useState("");
 
-  // const fetchData = async () => {
-  //   const res = await getCardList(params.boardId, params.boardname);
-
-  //   const { boardStates = [], error } = res;
-  //   if (error) {
-  //     console.error("Error fetching cards:", error);
-  //   } else {
-  //     setState(boardStates);
-  //   }
-  // };
-
   useEffect(() => {
     const fetchDetail = async () => {
       const { data, error } = await supabase
         .from("task_card")
         .select("*")
         .eq("id", cardId);
-
-      console.log(data, "data 123 123");
 
       if (!error) {
         setDescription(data[0].description);
