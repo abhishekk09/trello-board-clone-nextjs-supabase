@@ -13,6 +13,11 @@ const Modal = ({ isOpen, onClose, onAdd }) => {
       setShowError(true);
     }
   };
+
+  const onCancel = () => {
+    onClose();
+    setShowError(false);
+  };
   if (!isOpen) return null;
   return (
     <div className="flex items-center justify-center z-50 absolute left-[407px] top-[125px]">
@@ -38,7 +43,7 @@ const Modal = ({ isOpen, onClose, onAdd }) => {
             Create
           </button>
           <button
-            onClick={onClose}
+            onClick={onCancel}
             className="bg-gray-500 text-white px-4 py-2 rounded"
           >
             Cancel
